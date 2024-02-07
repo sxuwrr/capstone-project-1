@@ -1,0 +1,89 @@
+<!-- HTML CODE FORM -->
+
+<!-- <form action="task" method="POST">
+    <label for="task">What's on your mind</label>
+    <input type="text" name="task_name" required>
+    <input type="submit" value="Submit">
+</form>
+
+<form action="/task" method="POST">
+    <label for="task">What's on your mind</label>
+    <input type="text" name="task_name" required>
+    <input type="submit" value="Submit">
+</form> -->
+
+
+<!-- EJS UPDATED -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Task List</title>
+    <link rel="stylesheet" href="public/styles.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <%- include("partials/header.ejs") %>
+    <div class="main-content-container pt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>What's on your mind</h2>
+                    <form action="/task" method="POST">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="task_name" placeholder="Enter task..."
+                                required>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <h2>Current tasks:</h2>
+                    <% tasks.forEach((task, index)=> { %>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= task.name %>
+                                </h5>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <form class="mb-2" action="/delete/<%= index %>" method="POST">
+                                        <input type="submit" class="btn btn-danger me-2" value="Delete">
+                                    </form>
+                                    <form action="/update/<%= index %>" method="POST">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="updated_task_name"
+                                                placeholder="Any updates?" required>
+                                            <button class="btn btn-primary" type="submit">Update</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+            </div>
+        </div>
+</div>
+        <%- include("partials/footer") %>
+
+            <!-- Optional: Include jQuery and Bootstrap JS if needed -->
+            <!--
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+-->
+
+</body>
+
+</html>
+
+
+
+
+
+
